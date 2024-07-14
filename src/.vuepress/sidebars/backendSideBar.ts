@@ -1,5 +1,6 @@
-export default [
-    "",
+export default ({
+    "/":[
+        "",
     {
         text: "JAVA",
         collapsible: true,
@@ -45,6 +46,5 @@ export default [
             "Redis.md",
         ],
     },
-    
-    
-];
+    ],
+});
