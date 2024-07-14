@@ -145,7 +145,7 @@ ctrl+c
 - main.js是vue工程中非常重要的文件，他决定这项目使用哪些依赖，导入的第一个组件；
 - App.vue是vue中的核心组件，所有的其他组件都要通过该组件进行导入，该组件通过路由可以控制页面的切换；
 
-![](images/1684912274904.png#id=Jf8Ca&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
+
 
 ### Vite+Vue3响应式入门和setup函数
 ```html
