@@ -1,8 +1,6 @@
 import {SidebarConfig4Multiple} from "vuepress/config";
 import backendSideBar from "./sidebars/backendSideBar.js";
 
-export default({
-    "structure": true,
+export default{
     "/backend/": backendSideBar,
-    "/": "auto",
-}) as SidebarConfig4Multiple;
+} as SidebarConfig4Multiple;
