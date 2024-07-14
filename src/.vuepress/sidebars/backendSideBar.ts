@@ -1,6 +1,5 @@
 export default [
     "",
-    
     {
         title: "JAVA",
         collapsable: true,
