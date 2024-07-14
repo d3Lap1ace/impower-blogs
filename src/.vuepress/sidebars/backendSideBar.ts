@@ -1,5 +1,4 @@
-export default [
-    
+export default ([
     {
         title: "JAVA",
         collapsable: true,
@@ -47,4 +46,4 @@ export default [
     },
     
     
-];
+]);

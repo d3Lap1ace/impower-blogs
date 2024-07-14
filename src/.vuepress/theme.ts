@@ -3,6 +3,7 @@ import { hopeTheme } from "vuepress-theme-hope";
 import navbar from "./navbar.js";
 import sidebar from "./sidebar.js";
 
+
 export default hopeTheme({
   hostname: "https://vuepress-theme-hope-docs-demo.netlify.app",
   darkmode: "toggle",
@@ -26,7 +27,6 @@ export default hopeTheme({
 
   // 侧边栏
   sidebar,
-
   // 页脚
   footer: "默认页脚",
   displayFooter: true,
@@ -65,43 +65,38 @@ export default hopeTheme({
       components: ["Badge", "VPCard"],
     },
 
-    // MarkDown文件增强
+    // 此处开启了很多功能用于演示，你应仅保留用到的功能。
     mdEnhance: {
-        align: true,
-        attrs: true,
-        chart: true,
-        codetabs: true,
-        demo: true,
-        echarts: true,
-        flowchart: true,
-        gfm: true,
-        include: true,
-        katex: true,
-        // lazyLoad: true,
-        mark: true,
-        mermaid: true,
-        playground: {
-          presets: ["ts", "vue"],
-        },
-        stylize: [
-          {
-            matcher: "Recommanded",
-            replacer: ({ tag }) => {
-              if (tag === "em")
-                return {
-                  tag: "Badge",
-                  attrs: { type: "tip" },
-                  content: "Recommanded",
-                };
-            },
+      align: true,
+      attrs: true,
+      codetabs: true,
+      component: true,
+      demo: true,
+      figure: true,
+      imgLazyload: true,
+      imgSize: true,
+      include: true,
+      mark: true,
+      plantuml: true,
+      spoiler: true,
+      stylize: [
+        {
+          matcher: "Recommended",
+          replacer: ({ tag }) => {
+            if (tag === "em")
+              return {
+                tag: "Badge",
+                attrs: { type: "tip" },
+                content: "Recommended",
+              };
           },
-        ],
-        sub: true,
-        sup: true,
-        tabs: true,
-        // vpre: true,
-        vuePlayground: true,
-    },
+        },
+      ],
+      sub: true,
+      sup: true,
+      tabs: true,
+      tasklist: true,
+      vPre: true,
 
       // 在启用之前安装 chart.js
       // chart: true,
@@ -198,5 +193,5 @@ export default hopeTheme({
     //     ],
     //   },
     // },
-  
+  },
 });
