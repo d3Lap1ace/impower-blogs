@@ -26,9 +26,7 @@ export default hopeTheme({
   navbar,
 
   // 侧边栏
-  sidebar:{
-    "structure":true,
-  },
+  sidebar,
   // 页脚
   footer: "默认页脚",
   displayFooter: true,
