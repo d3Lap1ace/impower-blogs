@@ -12,7 +12,7 @@
 
 | 数据库存储数据 |
 | --- |
-| ![](JDBC.assets%5Cimage-20240221133238015.png#id=H5q2Y&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=) |
+
 
 
 #### 1.2 数据的操作
