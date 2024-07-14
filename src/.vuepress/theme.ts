@@ -7,15 +7,17 @@ export default hopeTheme({
   hostname: "https://vuepress-theme-hope-docs-demo.netlify.app",
 
   author: {
-    name: "Mr.Hope",
-    url: "https://mister-hope.com",
+    name: "luke.lewis",
+    url: "https://github.com/d3Lap1ace",
+    email: "aegonk@163.com",
   },
+  
 
   iconAssets: "fontawesome-with-brands",
 
-  logo: "https://theme-hope-assets.vuejs.press/logo.svg",
+  logo: "book-01.png",
 
-  repo: "vuepress-theme-hope/vuepress-theme-hope",
+  repo: "https://github.com/d3Lap1ace/impower-blogs",
 
   docsDir: "src",
 
@@ -28,6 +30,9 @@ export default hopeTheme({
   // 页脚
   footer: "默认页脚",
   displayFooter: true,
+
+  
+
 
   // 加密配置
   encrypt: {

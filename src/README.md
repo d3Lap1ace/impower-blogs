@@ -1,12 +1,13 @@
 ---
 home: true
 icon: home
-title: 项目主页
-heroImage: https://theme-hope-assets.vuejs.press/logo.svg
-bgImage: https://theme-hope-assets.vuejs.press/bg/6-light.svg
-bgImageDark: https://theme-hope-assets.vuejs.press/bg/6-dark.svg
+title: 首页
+heroImage: ./chrisTinaCir.png
+heroAlt: 栗悟饭与龟波功
+# bgImage: https://theme-hope-assets.vuejs.press/bg/6-light.svg
+# bgImageDark: https://theme-hope-assets.vuejs.press/bg/6-dark.svg
 bgImageStyle:
-  background-attachment: fixed
+background-attachment: fixed
 heroText: impower
 tagline: 全栈知识库
 actions:
@@ -15,9 +16,20 @@ actions:
     link: ./demo/
     type: primary
 
-  - text: 联系方式
-    link: ./guide/
+  - text: 个人主页
+    link: ./portfolio/
 
+  - text: 后端开发
+    link: ./backend/
+
+  - text: 前端开发
+    link: ./frontend/
+
+  - text: 开发工具
+    link: ./tools/
+
+
+ 
 # highlights:
 #   - header: 博客
 #     description: 通过主题创建个人博客
