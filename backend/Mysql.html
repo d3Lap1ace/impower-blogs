@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="generator" content="VuePress 2.0.0-rc.14" />
+    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.50" />
+    <style>
+      html {
+        background: var(--bg-color, #fff);
+      }
+
+      html[data-theme="dark"] {
+        background: var(--bg-color, #1d1e1f);
+      }
+
+      body {
+        background: var(--bg-color);
+      }
+    </style>
+    <script>
+      const userMode = localStorage.getItem("vuepress-theme-hope-scheme");
+      const systemDarkMode =
+        window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+      if (userMode === "dark" || (userMode !== "light" && systemDarkMode)) {
+        document.documentElement.setAttribute("data-theme", "dark");
+      }
+    </script>
+    <meta property="og:url" content="https://vuepress-theme-hope-docs-demo.netlify.app/impower-blogs/backend/Mysql.html"><meta property="og:site_name" content="impower"><meta property="og:title" content="Mysql"><meta property="og:description" content="Mysql sqlserver数据库对应java中的数据类型 baseOperation create database create tables; delete tables; update tables; query function subquery transaction constraint join Inner JOIN SELECT <..."><meta property="og:type" content="article"><meta property="og:image" content="https://gitee.com/lukelyu/images/raw/master/image/sql-join.png#id=vnydY&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title="><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2024-07-14T12:35:41.000Z"><meta property="article:author" content="luke.lewis"><meta property="article:modified_time" content="2024-07-14T12:35:41.000Z"><script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Mysql","image":["https://gitee.com/lukelyu/images/raw/master/image/sql-join.png#id=vnydY&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=","https://www.runoob.com/wp-content/uploads/2019/01/1548731841-2663-INNER-JOIN.png#id=prRtf&originHeight=174&originWidth=258&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=","https://www.runoob.com/wp-content/uploads/2019/01/1548731843-2683-LEFT-JOIN.png#id=pTfRp&originHeight=174&originWidth=258&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=","https://www.runoob.com/wp-content/uploads/2019/01/1548731845-3187-RIGHT-JOIN.png#id=Ws0fg&originHeight=174&originWidth=258&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=","https://gitee.com/lukelyu/images/raw/master/image/1548731847-7074-FULL-OUTER-JOIN.png#id=IsZpj&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=","https://gitee.com/lukelyu/images/raw/master/image/1548731849-9936-LEFT-EXCLUDING-JOIN.png#id=Iuw6f&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=","https://gitee.com/lukelyu/images/raw/master/image/1548731850-7833-RIGHT-EXCLUDING-JOIN.png#id=Jp8QM&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=","https://gitee.com/lukelyu/images/raw/master/image/1548731854-3464-OUTER-EXCLUDING-JOIN.png#id=f81U7&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title="],"dateModified":"2024-07-14T12:35:41.000Z","author":[{"@type":"Person","name":"luke.lewis","url":"https://github.com/d3Lap1ace","email":"aegonk@163.com"}]}</script><title>Mysql | impower</title><meta name="description" content="Mysql sqlserver数据库对应java中的数据类型 baseOperation create database create tables; delete tables; update tables; query function subquery transaction constraint join Inner JOIN SELECT <...">
+    <link rel="preload" href="/impower-blogs/assets/style-C6G1EAyw.css" as="style"><link rel="stylesheet" href="/impower-blogs/assets/style-C6G1EAyw.css">
+    <link rel="modulepreload" href="/impower-blogs/assets/app-BkLpWT_T.js"><link rel="modulepreload" href="/impower-blogs/assets/Mysql.html-jFUULzE2.js"><link rel="modulepreload" href="/impower-blogs/assets/plugin-vue_export-helper-DlAUqK2U.js">
+    
+  </head>
+  <body>
+    <div id="app"><!--[--><!--[--><!--[--><span tabindex="-1"></span><a href="#main-content" class="vp-skip-link sr-only">跳至主要內容</a><!--]--><div class="theme-container external-link-icon has-toc"><!--[--><header id="navbar" class="vp-navbar"><div class="vp-navbar-start"><button type="button" class="vp-toggle-sidebar-button" title="Toggle Sidebar"><span class="icon"></span></button><!----><!--[--><a class="route-link vp-brand" href="/impower-blogs/"><img class="vp-nav-logo" src="/impower-blogs/book-01.png" alt><!----><span class="vp-site-name hide-in-pad">impower</span></a><!--]--><!----></div><div class="vp-navbar-center"><!----><!--[--><nav class="vp-nav-links"><div class="vp-nav-item hide-in-mobile"><a class="route-link auto-link" href="/impower-blogs/" aria-label="首页"><!--[--><span class="font-icon icon fa-fw fa-sm fas fa-home" style=""></span><!--]-->首页<!----></a></div><div class="vp-nav-item hide-in-mobile"><a class="route-link route-link-active auto-link" href="/impower-blogs/backend/" aria-label="后端开发"><!---->后端开发<!----></a></div><div class="vp-nav-item hide-in-mobile"><a class="route-link auto-link" href="/impower-blogs/frontend/" aria-label="前端开发"><!---->前端开发<!----></a></div><div class="vp-nav-item hide-in-mobile"><a class="route-link auto-link" href="/impower-blogs/tools/" aria-label="开发工具"><!---->开发工具<!----></a></div></nav><!--]--><!----></div><div class="vp-navbar-end"><!----><!--[--><!----><div class="vp-nav-item vp-action"><a class="vp-action-link" href="https://github.com/d3Lap1ace" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><svg xmlns="http://www.w3.org/2000/svg" class="icon github-icon" viewBox="0 0 1024 1024" fill="currentColor" aria-label="github icon" name="github" style="width:1.25rem;height:1.25rem;vertical-align:middle;"><path d="M511.957 21.333C241.024 21.333 21.333 240.981 21.333 512c0 216.832 140.544 400.725 335.574 465.664 24.49 4.395 32.256-10.07 32.256-23.083 0-11.69.256-44.245 0-85.205-136.448 29.61-164.736-64.64-164.736-64.64-22.315-56.704-54.4-71.765-54.4-71.765-44.587-30.464 3.285-29.824 3.285-29.824 49.195 3.413 75.179 50.517 75.179 50.517 43.776 75.008 114.816 53.333 142.762 40.79 4.523-31.66 17.152-53.377 31.19-65.537-108.971-12.458-223.488-54.485-223.488-242.602 0-53.547 19.114-97.323 50.517-131.67-5.035-12.33-21.93-62.293 4.779-129.834 0 0 41.258-13.184 134.912 50.346a469.803 469.803 0 0 1 122.88-16.554c41.642.213 83.626 5.632 122.88 16.554 93.653-63.488 134.784-50.346 134.784-50.346 26.752 67.541 9.898 117.504 4.864 129.834 31.402 34.347 50.474 78.123 50.474 131.67 0 188.586-114.73 230.016-224.042 242.09 17.578 15.232 33.578 44.672 33.578 90.454v135.85c0 13.142 7.936 27.606 32.854 22.87C862.25 912.597 1002.667 728.747 1002.667 512c0-271.019-219.648-490.667-490.71-490.667z"></path></svg></a></div><div class="vp-nav-item hide-in-mobile"><button type="button" class="vp-color-mode-switch" id="color-mode-switch"><svg xmlns="http://www.w3.org/2000/svg" class="icon auto-icon" viewBox="0 0 1024 1024" fill="currentColor" aria-label="auto icon" name="auto" style="display:none;"><path d="M512 992C246.92 992 32 777.08 32 512S246.92 32 512 32s480 214.92 480 480-214.92 480-480 480zm0-840c-198.78 0-360 161.22-360 360 0 198.84 161.22 360 360 360s360-161.16 360-360c0-198.78-161.22-360-360-360zm0 660V212c165.72 0 300 134.34 300 300 0 165.72-134.28 300-300 300z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" class="icon dark-icon" viewBox="0 0 1024 1024" fill="currentColor" aria-label="dark icon" name="dark" style="display:none;"><path d="M524.8 938.667h-4.267a439.893 439.893 0 0 1-313.173-134.4 446.293 446.293 0 0 1-11.093-597.334A432.213 432.213 0 0 1 366.933 90.027a42.667 42.667 0 0 1 45.227 9.386 42.667 42.667 0 0 1 10.24 42.667 358.4 358.4 0 0 0 82.773 375.893 361.387 361.387 0 0 0 376.747 82.774 42.667 42.667 0 0 1 54.187 55.04 433.493 433.493 0 0 1-99.84 154.88 438.613 438.613 0 0 1-311.467 128z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" class="icon light-icon" viewBox="0 0 1024 1024" fill="currentColor" aria-label="light icon" name="light" style="display:block;"><path d="M952 552h-80a40 40 0 0 1 0-80h80a40 40 0 0 1 0 80zM801.88 280.08a41 41 0 0 1-57.96-57.96l57.96-58a41.04 41.04 0 0 1 58 58l-58 57.96zM512 752a240 240 0 1 1 0-480 240 240 0 0 1 0 480zm0-560a40 40 0 0 1-40-40V72a40 40 0 0 1 80 0v80a40 40 0 0 1-40 40zm-289.88 88.08-58-57.96a41.04 41.04 0 0 1 58-58l57.96 58a41 41 0 0 1-57.96 57.96zM192 512a40 40 0 0 1-40 40H72a40 40 0 0 1 0-80h80a40 40 0 0 1 40 40zm30.12 231.92a41 41 0 0 1 57.96 57.96l-57.96 58a41.04 41.04 0 0 1-58-58l58-57.96zM512 832a40 40 0 0 1 40 40v80a40 40 0 0 1-80 0v-80a40 40 0 0 1 40-40zm289.88-88.08 58 57.96a41.04 41.04 0 0 1-58 58l-57.96-58a41 41 0 0 1 57.96-57.96z"></path></svg></button></div><!----><!--]--><!----><button type="button" class="vp-toggle-navbar-button" aria-label="Toggle Navbar" aria-expanded="false" aria-controls="nav-screen"><span><span class="vp-top"></span><span class="vp-middle"></span><span class="vp-bottom"></span></span></button></div></header><!----><!--]--><!----><div class="toggle-sidebar-wrapper"><span class="arrow start"></span></div><aside id="sidebar" class="vp-sidebar"><!----><ul class="vp-sidebar-links"><li><a class="route-link auto-link vp-sidebar-link" href="/impower-blogs/backend/" aria-label="后端开发"><!---->后端开发<!----></a></li><li><section class="vp-sidebar-group"><button class="vp-sidebar-header clickable" type="button"><!----><span class="vp-sidebar-title">JAVA</span><span class="vp-arrow end"></span></button><!----></section></li><li><section class="vp-sidebar-group"><button class="vp-sidebar-header clickable" type="button"><!----><span class="vp-sidebar-title">Spring框架</span><span class="vp-arrow end"></span></button><!----></section></li><li><section class="vp-sidebar-group"><button class="vp-sidebar-header clickable active" type="button"><!----><span class="vp-sidebar-title">Linux</span><span class="vp-arrow down"></span></button><ul class="vp-sidebar-links"><li><a class="route-link route-link-active auto-link vp-sidebar-link active" href="/impower-blogs/backend/Mysql.html" aria-label="Mysql"><!---->Mysql<!----></a></li><li><a class="route-link auto-link vp-sidebar-link" href="/impower-blogs/backend/JDBC.html" aria-label="/backend/JDBC.html"><!---->/backend/JDBC.html<!----></a></li><li><a class="route-link auto-link vp-sidebar-link" href="/impower-blogs/backend/Linux.html" aria-label="centOS7"><!---->centOS7<!----></a></li></ul></section></li><li><section class="vp-sidebar-group"><button class="vp-sidebar-header clickable" type="button"><!----><span class="vp-sidebar-title">高并发</span><span class="vp-arrow end"></span></button><!----></section></li><li><section class="vp-sidebar-group"><button class="vp-sidebar-header clickable" type="button"><!----><span class="vp-sidebar-title">分布式微服务</span><span class="vp-arrow end"></span></button><!----></section></li></ul><!----></aside><!--[--><main id="main-content" class="vp-page"><!--[--><!----><!----><nav class="vp-breadcrumb disable"></nav><div class="vp-page-title"><h1><!---->Mysql</h1><div class="page-info"><span class="page-author-info" aria-label="作者🖊" data-balloon-pos="up"><svg xmlns="http://www.w3.org/2000/svg" class="icon author-icon" viewBox="0 0 1024 1024" fill="currentColor" aria-label="author icon" name="author"><path d="M649.6 633.6c86.4-48 147.2-144 147.2-249.6 0-160-128-288-288-288s-288 128-288 288c0 108.8 57.6 201.6 147.2 249.6-121.6 48-214.4 153.6-240 288-3.2 9.6 0 19.2 6.4 25.6 3.2 9.6 12.8 12.8 22.4 12.8h704c9.6 0 19.2-3.2 25.6-12.8 6.4-6.4 9.6-16 6.4-25.6-25.6-134.4-121.6-240-243.2-288z"></path></svg><span><a class="page-author-item" href="https://github.com/d3Lap1ace" target="_blank" rel="noopener noreferrer">luke.lewis</a></span><span property="author" content="luke.lewis"></span></span><!----><span class="page-date-info" aria-label="写作日期📅" data-balloon-pos="up"><svg xmlns="http://www.w3.org/2000/svg" class="icon calendar-icon" viewBox="0 0 1024 1024" fill="currentColor" aria-label="calendar icon" name="calendar"><path d="M716.4 110.137c0-18.753-14.72-33.473-33.472-33.473-18.753 0-33.473 14.72-33.473 33.473v33.473h66.993v-33.473zm-334.87 0c0-18.753-14.72-33.473-33.473-33.473s-33.52 14.72-33.52 33.473v33.473h66.993v-33.473zm468.81 33.52H716.4v100.465c0 18.753-14.72 33.473-33.472 33.473a33.145 33.145 0 01-33.473-33.473V143.657H381.53v100.465c0 18.753-14.72 33.473-33.473 33.473a33.145 33.145 0 01-33.473-33.473V143.657H180.6A134.314 134.314 0 0046.66 277.595v535.756A134.314 134.314 0 00180.6 947.289h669.74a134.36 134.36 0 00133.94-133.938V277.595a134.314 134.314 0 00-133.94-133.938zm33.473 267.877H147.126a33.145 33.145 0 01-33.473-33.473c0-18.752 14.72-33.473 33.473-33.473h736.687c18.752 0 33.472 14.72 33.472 33.473a33.145 33.145 0 01-33.472 33.473z"></path></svg><span><!----></span><meta property="datePublished" content="2024-07-14T12:35:41.000Z"></span><!----><span class="page-reading-time-info" aria-label="阅读时间⌛" data-balloon-pos="up"><svg xmlns="http://www.w3.org/2000/svg" class="icon timer-icon" viewBox="0 0 1024 1024" fill="currentColor" aria-label="timer icon" name="timer"><path d="M799.387 122.15c4.402-2.978 7.38-7.897 7.38-13.463v-1.165c0-8.933-7.38-16.312-16.312-16.312H256.33c-8.933 0-16.311 7.38-16.311 16.312v1.165c0 5.825 2.977 10.874 7.637 13.592 4.143 194.44 97.22 354.963 220.201 392.763-122.204 37.542-214.893 196.511-220.2 389.397-4.661 5.049-7.638 11.651-7.638 19.03v5.825h566.49v-5.825c0-7.379-2.849-13.981-7.509-18.9-5.049-193.016-97.867-351.985-220.2-389.527 123.24-37.67 216.446-198.453 220.588-392.892zM531.16 450.445v352.632c117.674 1.553 211.787 40.778 211.787 88.676H304.097c0-48.286 95.149-87.382 213.728-88.676V450.445c-93.077-3.107-167.901-81.297-167.901-177.093 0-8.803 6.99-15.793 15.793-15.793 8.803 0 15.794 6.99 15.794 15.793 0 80.261 63.69 145.635 142.01 145.635s142.011-65.374 142.011-145.635c0-8.803 6.99-15.793 15.794-15.793s15.793 6.99 15.793 15.793c0 95.019-73.789 172.82-165.96 177.093z"></path></svg><span>大约 10 分钟</span><meta property="timeRequired" content="PT10M"></span><!----><!----></div><hr></div><div class="vp-toc-placeholder"><aside id="toc"><!----><div class="vp-toc-header">此页内容<button type="button" class="print-button" title="打印"><svg xmlns="http://www.w3.org/2000/svg" class="icon print-icon" viewBox="0 0 1024 1024" fill="currentColor" aria-label="print icon" name="print"><path d="M819.2 364.8h-44.8V128c0-17.067-14.933-32-32-32H281.6c-17.067 0-32 14.933-32 32v236.8h-44.8C145.067 364.8 96 413.867 96 473.6v192c0 59.733 49.067 108.8 108.8 108.8h44.8V896c0 17.067 14.933 32 32 32h460.8c17.067 0 32-14.933 32-32V774.4h44.8c59.733 0 108.8-49.067 108.8-108.8v-192c0-59.733-49.067-108.8-108.8-108.8zM313.6 160h396.8v204.8H313.6V160zm396.8 704H313.6V620.8h396.8V864zM864 665.6c0 25.6-19.2 44.8-44.8 44.8h-44.8V588.8c0-17.067-14.933-32-32-32H281.6c-17.067 0-32 14.933-32 32v121.6h-44.8c-25.6 0-44.8-19.2-44.8-44.8v-192c0-25.6 19.2-44.8 44.8-44.8h614.4c25.6 0 44.8 19.2 44.8 44.8v192z"></path></svg></button><div class="arrow end"></div></div><div class="vp-toc-wrapper"><ul class="vp-toc-list"><!--[--><li class="vp-toc-item"><a class="route-link vp-toc-link level3" href="#inner-join">Inner JOIN</a></li><!----><!--]--><!--[--><li class="vp-toc-item"><a class="route-link vp-toc-link level3" href="#left-join">Left JOIN</a></li><!----><!--]--><!--[--><li class="vp-toc-item"><a class="route-link vp-toc-link level3" href="#right-join">Right JOIN</a></li><!----><!--]--><!--[--><li class="vp-toc-item"><a class="route-link vp-toc-link level3" href="#outer-join">Outer JOIN</a></li><!----><!--]--><!--[--><li class="vp-toc-item"><a class="route-link vp-toc-link level3" href="#left-excluding-join">Left Excluding JOIN</a></li><!----><!--]--><!--[--><li class="vp-toc-item"><a class="route-link vp-toc-link level3" href="#right-excluding-join">Right Excluding JOIN</a></li><!----><!--]--><!--[--><li class="vp-toc-item"><a class="route-link vp-toc-link level3" href="#outer-excluding-join">Outer Excluding JOIN</a></li><!----><!--]--></ul><div class="vp-toc-marker" style="top:-1.7rem;"></div></div><!----></aside></div><!----><div class="theme-hope-content"><h1 id="mysql" tabindex="-1"><a class="header-anchor" href="#mysql"><span>Mysql</span></a></h1><h1 id="sqlserver数据库对应java中的数据类型" tabindex="-1"><a class="header-anchor" href="#sqlserver数据库对应java中的数据类型"><span><strong>sqlserver数据库对应java中的数据类型</strong></span></a></h1><table><thead><tr><th>SQL Server 类型</th><th>JDBC 类型 (java.sql.Types)</th><th>Java 语言类型</th></tr></thead><tbody><tr><td>bigint</td><td>BIGINT</td><td>long</td></tr><tr><td>timestampbinary</td><td>BINARY</td><td>byte[]</td></tr><tr><td>bit</td><td>BIT</td><td>boolean</td></tr><tr><td>char</td><td>CHAR</td><td>String</td></tr><tr><td>decimalmoneysmallmoney</td><td>DECIMAL</td><td>java.math.BigDecimal</td></tr><tr><td>float</td><td>DOUBLE</td><td>double</td></tr><tr><td>int</td><td>INTEGER</td><td>int</td></tr><tr><td>imagevarbinary(max)</td><td>LONGVARBINARY</td><td>byte[]</td></tr><tr><td>varchar(max)text</td><td>LONGVARCHAR</td><td>String</td></tr><tr><td>nchar</td><td>CHARNCHAR (Java SE 6.0)</td><td>String</td></tr><tr><td>nvarchar</td><td>VARCHARNVARCHAR (Java SE 6.0)</td><td>String</td></tr><tr><td>nvarchar(max)ntext</td><td>LONGVARCHARLONGNVARCHAR (Java SE 6.0)</td><td>String</td></tr><tr><td>numeric</td><td>NUMERIC</td><td>java.math.BigDecimal</td></tr><tr><td>real</td><td>REAL</td><td>float</td></tr><tr><td>smallint</td><td>SMALLINT</td><td>short</td></tr><tr><td>datetimesmalldatetime</td><td>TIMESTAMP</td><td>java.sql.Timestamp</td></tr><tr><td>varbinaryudt</td><td>VARBINARY</td><td>byte[]</td></tr><tr><td>varchar</td><td>VARCHAR</td><td>String</td></tr><tr><td>tinyint</td><td>TINYINT</td><td>short</td></tr><tr><td>uniqueidentifier</td><td>CHAR</td><td>String</td></tr><tr><td>xml</td><td>LONGVARCHARSQLXML (Java SE 6.0)</td><td>StringSQLXML</td></tr><tr><td>time</td><td>TIME (1)</td><td>java.sql.Time (1)</td></tr><tr><td>date</td><td>DATE</td><td>java.sql.Date</td></tr><tr><td>datetime2</td><td>TIMESTAMP</td><td>java.sql.Timestamp</td></tr><tr><td>datetimeoffset (2)</td><td>microsoft.sql.Types.DATETIMEOFFSET</td><td>microsoft.sql.DateTimeOffset</td></tr></tbody></table><h1 id="baseoperation" tabindex="-1"><a class="header-anchor" href="#baseoperation"><span>baseOperation</span></a></h1><div class="language- line-numbers-mode" data-highlighter="shiki" data-ext="" data-title="" style="--shiki-light:#24292e;--shiki-dark:#abb2bf;--shiki-light-bg:#fff;--shiki-dark-bg:#282c34;"><pre class="shiki shiki-themes github-light one-dark-pro vp-code"><code><span class="line"><span>MySQL数据库是一个C/S架构</span></span>
+<span class="line"><span>Server : mysqld.exe</span></span>
+<span class="line"><span>Client : mysql.exe</span></span>
+<span class="line"><span>\select 可以查看当前连接的会话信息</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>通过客户端连接服务器</span></span>
+<span class="line"><span>-h主机地址</span></span>
+<span class="line"><span>-P端口号</span></span>
+<span class="line"><span>-u用户名</span></span>
+<span class="line"><span>-p密码</span></span>
+<span class="line"><span>mysql.exe -h127.0.0.1 -P3306 -uroot -p123456</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>-- 导入外部数据文件中的数据</span></span>
+<span class="line"><span>source -- 外部数据文件的绝对路径 </span></span>
+<span class="line"><span>source d:\\company.sql;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>-- 注意 : </span></span>
+<span class="line"><span>	SQL 语言大小写不敏感。 </span></span>
+<span class="line"><span>	SQL 可以写在一行或者多行</span></span>
+<span class="line"><span>	关键字不能被缩写也不能分行</span></span>
+<span class="line"><span>	各子句一般要分行写。</span></span>
+<span class="line"><span>	使用缩进提高语句的可读性。</span></span>
+<span class="line"><span>	</span></span>
+<span class="line"><span>	</span></span>
+<span class="line"><span>-- DML : 数据操纵语言, 操作数据的</span></span>
+<span class="line"><span>C  新建数据 insert </span></span>
+<span class="line"><span>R  访问数据 select  -- DQL </span></span>
+<span class="line"><span>U  修改数据 update </span></span>
+<span class="line"><span>D  删除数据 delete </span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>-- DDL : 数据定义语言, 操作数据库对象(数据库, 表, 列, 约束, 视图)</span></span>
+<span class="line"><span>C  创建对象   create </span></span>
+<span class="line"><span>R  查看对象   show </span></span>
+<span class="line"><span>U  修改对象   alter</span></span>
+<span class="line"><span>D  丢弃对象   drop </span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>整数</span></span>
+<span class="line"><span>	int 		4字节有符号</span></span>
+<span class="line"><span>	bigint	    8字节有符号 </span></span>
+<span class="line"><span>小数</span></span>
+<span class="line"><span>	double 		8字节 (浮点数)</span></span>
+<span class="line"><span>	decimal		多个字节 定点数(精度高)</span></span>
+<span class="line"><span>字符串 </span></span>
+<span class="line"><span>	char		1个字符 </span></span>
+<span class="line"><span>	char(长度)	定长字符串, 效率高, 占用空间, 最长255</span></span>
+<span class="line"><span>	varchar(长度) 变长字符串, 空间使用好, 最长65535字节.</span></span>
+<span class="line"><span>	longtext	  长文本, 最多4G</span></span>
+<span class="line"><span>日期时间</span></span>
+<span class="line"><span>	date	    日期 </span></span>
+<span class="line"><span>	time 		时间 </span></span>
+<span class="line"><span>	datetime	日期时间</span></span></code></pre><div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0;"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h1 id="create-database" tabindex="-1"><a class="header-anchor" href="#create-database"><span>create database</span></a></h1><div class="language-sql line-numbers-mode" data-highlighter="shiki" data-ext="sql" data-title="sql" style="--shiki-light:#24292e;--shiki-dark:#abb2bf;--shiki-light-bg:#fff;--shiki-dark-bg:#282c34;"><pre class="shiki shiki-themes github-light one-dark-pro vp-code"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#C678DD;">create</span><span style="--shiki-light:#D73A49;--shiki-dark:#C678DD;"> database</span><span style="--shiki-light:#6F42C1;--shiki-dark:#61AFEF;"> database_name</span></span></code></pre><div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0;"><div class="line-number"></div></div></div><h1 id="create-tables" tabindex="-1"><a class="header-anchor" href="#create-tables"><span>create tables;</span></a></h1><div class="language- line-numbers-mode" data-highlighter="shiki" data-ext="" data-title="" style="--shiki-light:#24292e;--shiki-dark:#abb2bf;--shiki-light-bg:#fff;--shiki-dark-bg:#282c34;"><pre class="shiki shiki-themes github-light one-dark-pro vp-code"><code><span class="line"><span>-- 创建表 </span></span>
+<span class="line"><span>create table if not exists 表名 (</span></span>
+<span class="line"><span>	列名1 数据类型(长度) 其他选项,</span></span>
+<span class="line"><span>	列名2 数据类型(长度) 其他选项, </span></span>
+<span class="line"><span>	.......,</span></span>
+<span class="line"><span>	表级约束1(列名),</span></span>
+<span class="line"><span>	表级约束2(列名)</span></span>
+<span class="line"><span>) engine 存储引擎 charset 字符集;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>create table if not exists teacher (</span></span>
+<span class="line"><span>	id int auto_increment, -- 自增 </span></span>
+<span class="line"><span>	name varchar(10) not null, -- 非空 </span></span>
+<span class="line"><span>	age int,</span></span>
+<span class="line"><span>	gender enum(&#39;男&#39;, &#39;女&#39;) default &#39;男&#39;, </span></span>
+<span class="line"><span>	phone varchar(20), -- 唯一 </span></span>
+<span class="line"><span>	primary key(id),</span></span>
+<span class="line"><span>	unique(phone)</span></span>
+<span class="line"><span>) engine innodb charset utf8mb4;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>-- 字符串必须使用&#39;&#39;包围</span></span>
+<span class="line"><span>insert into customer(</span></span>
+<span class="line"><span>	id, -- 列名的列表可以乱序</span></span>
+<span class="line"><span>	name,</span></span>
+<span class="line"><span>	age,</span></span>
+<span class="line"><span>	gender,</span></span>
+<span class="line"><span>	email </span></span>
+<span class="line"><span>) values (</span></span>
+<span class="line"><span>	1, -- 值的列表必须要和列名的列表顺序一致.	</span></span>
+<span class="line"><span>	&#39;张三&#39;,</span></span>
+<span class="line"><span>	35,</span></span>
+<span class="line"><span>	&#39;男&#39;,</span></span>
+<span class="line"><span>	&#39;zhang3@qq.com&#39;</span></span>
+<span class="line"><span>);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>-- 完整复制表结构</span></span>
+<span class="line"><span>create table if not exists country3 like world.country;</span></span></code></pre><div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0;"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h1 id="delete-tables" tabindex="-1"><a class="header-anchor" href="#delete-tables"><span>delete tables;</span></a></h1><div class="language- line-numbers-mode" data-highlighter="shiki" data-ext="" data-title="" style="--shiki-light:#24292e;--shiki-dark:#abb2bf;--shiki-light-bg:#fff;--shiki-dark-bg:#282c34;"><pre class="shiki shiki-themes github-light one-dark-pro vp-code"><code><span class="line"><span>-- 丢弃表</span></span>
+<span class="line"><span>drop table 表名;</span></span>
+<span class="line"><span>-- 删除数据</span></span>
+<span class="line"><span>delete from 表名;</span></span>
+<span class="line"><span>-- 删除所有数据, 最好加上where</span></span>
+<span class="line"><span>delete from customer;</span></span>
+<span class="line"><span>delete from customer where id = 2;</span></span></code></pre><div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0;"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h1 id="update-tables" tabindex="-1"><a class="header-anchor" href="#update-tables"><span>update tables;</span></a></h1><div class="language- line-numbers-mode" data-highlighter="shiki" data-ext="" data-title="" style="--shiki-light:#24292e;--shiki-dark:#abb2bf;--shiki-light-bg:#fff;--shiki-dark-bg:#282c34;"><pre class="shiki shiki-themes github-light one-dark-pro vp-code"><code><span class="line"><span></span></span>
+<span class="line"><span>UPDATE table_name</span></span>
+<span class="line"><span>SET column1 = value1, column2 = value2, ...</span></span>
+<span class="line"><span>WHERE condition;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>-- 修改数据</span></span>
+<span class="line"><span>update customer set name =&#39;张三&#39;, age = 35 where id = 1;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>-- 修改表 </span></span>
+<span class="line"><span>alter table 表名 </span></span>
+<span class="line"><span>-- 添加新列</span></span>
+<span class="line"><span>add column 列名 数据类型(长度) 其他选项;</span></span>
+<span class="line"><span>    -- 向头部添加新列</span></span>
+<span class="line"><span>	ex:</span></span>
+<span class="line"><span>	alter table teacher </span></span>
+<span class="line"><span>	add column salary int not null first;</span></span>
+<span class="line"><span>    -- 向中间位置添加新列</span></span>
+<span class="line"><span>    add column 列名 数据类型(长度) 其他选项 after 某列名;</span></span>
+<span class="line"><span>    </span></span>
+<span class="line"><span>-- 修改列的数据类型等</span></span>
+<span class="line"><span>modify column 列名 新数据类型(新长度) 新其他选项;</span></span>
+<span class="line"><span>	ex:</span></span>
+<span class="line"><span>	alter table teacher </span></span>
+<span class="line"><span>	modify column name char(5) not null; -- 选项最好还是加上, 和原来一样.</span></span>
+<span class="line"><span>	</span></span>
+<span class="line"><span>-- 修改列名等</span></span>
+<span class="line"><span>change column 列名 新列名 新数据类型(新长度) 新其他选项;</span></span>
+<span class="line"><span>	ex:</span></span>
+<span class="line"><span>	alter table teacher </span></span>
+<span class="line"><span>	change column phone mobile char(15) unique;</span></span></code></pre><div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0;"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h1 id="query" tabindex="-1"><a class="header-anchor" href="#query"><span>query</span></a></h1><div class="language- line-numbers-mode" data-highlighter="shiki" data-ext="" data-title="" style="--shiki-light:#24292e;--shiki-dark:#abb2bf;--shiki-light-bg:#fff;--shiki-dark-bg:#282c34;"><pre class="shiki shiki-themes github-light one-dark-pro vp-code"><code><span class="line"><span>-- 选择所有列</span></span>
+<span class="line"><span>SELECT *</span></span>
+<span class="line"><span>FROM   departments;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>-- 选择特定列 </span></span>
+<span class="line"><span>SELECT </span></span>
+<span class="line"><span>	department_id, </span></span>
+<span class="line"><span>	location_id</span></span>
+<span class="line"><span>FROM   </span></span>
+<span class="line"><span>	departments;</span></span>
+<span class="line"><span>	</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>-- 给列起别名, 使用关键字 as, as关键字可以省略 , 只能影响到虚表   </span></span>
+<span class="line"><span>select </span></span>
+<span class="line"><span>	continent as 大洲,</span></span>
+<span class="line"><span>	name &quot;国家 名字&quot;, -- 别名中如果有空格, 必须要用&quot;&quot;包围</span></span>
+<span class="line"><span>	code 代码,</span></span>
+<span class="line"><span>	code,</span></span>
+<span class="line"><span>	name</span></span>
+<span class="line"><span>from               -- 别名一旦建立  原名被替代</span></span>
+<span class="line"><span>	country;</span></span>
+<span class="line"><span>	</span></span>
+<span class="line"><span>	</span></span>
+<span class="line"><span>-- 在where中不可以使用列的别名, where先于select执行.	先滤行</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>-- 执行顺序 : join -&gt; on -&gt; join -&gt; on ... from -&gt; where -&gt; select -&gt; order by </span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>where 判定器, 判定器的结果一定是布尔.</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>like 用于模糊查询, 只能用于字符串类型的列   -- 如果后面的字符串中没有特殊字符时, Like和 = 一样.</span></span>
+<span class="line"><span>% 表示的是任意个任意字符, 最灵活的通配符</span></span>
+<span class="line"><span>_ 表示的是一个任意字符, 必须是一个</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>-- null值的处理必须使用is </span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>distinct 查重</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>order by 用于为虚表排序, 所以它总是最后, 且晚于select执行.</span></span>
+<span class="line"><span>-- asc 升序(默认)</span></span>
+<span class="line"><span>-- desc 降序</span></span>
+<span class="line"><span>-- 先以第1列为依据升序排序, 在相同的第一列数据的内部再以第2列微排 </span></span>
+<span class="line"><span>-- 查询的过程就是把基表切开, 再根据 select中提供的列, 把需要的列取出来, 所有列都取出来后, 再现粘回去, 形成一个虚表.</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>-- 多个表中的同名列必须使用表名.限定 </span></span>
+<span class="line"><span></span></span>
+<span class="line"><span></span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>-- 逻辑运算 </span></span>
+<span class="line"><span>-- and 表示并且, 只要有假结果一定假</span></span>
+<span class="line"><span>-- or 表示或者, 只要有真结果一定真</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>-- 并且的逻辑要求高, 数据较少</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>group by中出现的列必须也出现在select</span></span>
+<span class="line"><span>-- group by 中出现的列对应的数据必须要有相同,才便于聚集</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>limit  0,1 -- 跳过第0行 获得第1行</span></span></code></pre><div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0;"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h1 id="function" tabindex="-1"><a class="header-anchor" href="#function"><span>function</span></a></h1><div class="language- line-numbers-mode" data-highlighter="shiki" data-ext="" data-title="" style="--shiki-light:#24292e;--shiki-dark:#abb2bf;--shiki-light-bg:#fff;--shiki-dark-bg:#282c34;"><pre class="shiki shiki-themes github-light one-dark-pro vp-code"><code><span class="line"><span>-- 单行函数 : 作用于每一行数据, 以每一行数据的某些列为实参.</span></span>
+<span class="line"><span>lower(字符串) -- 变小写 </span></span>
+<span class="line"><span>upper(字符串) -- 变大写 </span></span>
+<span class="line"><span>CONCAT(&#39;Hello&#39;, &#39;World&#39;) : &#39;HelloWorld&#39; -- 字符串连接 </span></span>
+<span class="line"><span>SUBSTR(&#39;HelloWorld&#39;, 1, 5) : -- 取子串, 第1个参数是要处理的字符串, 第2个参数是开始索引下标(索引总是从1开始), 第3个参数是子串长度</span></span>
+<span class="line"><span>LENGTH(&#39;HelloWorld&#39;) -- 获取字符串长度</span></span>
+<span class="line"><span>INSTR(&#39;HelloWorld&#39;, &#39;W&#39;) -- 获取第2个参数的短串,在第1个参数长串中首次出现的下标索引 , 和indexOf</span></span>
+<span class="line"><span>LPAD(salary,10,&#39;*&#39;) -- 左填充 , 第2个参数是总宽度, 第3个参数是要填充的字符</span></span>
+<span class="line"><span>RPAD(salary, 10, &#39;*&#39;) -- 右填充</span></span>
+<span class="line"><span>TRIM(&#39;H&#39; FROM &#39;HelloWorld&#39;),</span></span>
+<span class="line"><span>REPLACE(&#39;abcd&#39;,&#39;b&#39;,&#39;m&#39;)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span></span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>-- 解题思路 : 	</span></span>
+<span class="line"><span>1) 确定 主基表 , 如果一张表数据不够, join 副表 , 必须再有on, 如果数据还不够, 继续 join... on 最后确定好了最终的基表</span></span>
+<span class="line"><span>2) from 从这个最终基表中获取到所有数据, 如果不需要这么多数据, 使用 where 进行基本的行过滤. 基本行确定OK</span></span>
+<span class="line"><span>3) 是否题干中是否有 &quot;各&quot;, &quot;每&quot;, 如果有要分组group by, 弄清楚分组依据的列是什么</span></span>
+<span class="line"><span>4) 如果有分组, 第1时间把分组的列名放在select中. 继续处理select中还需要哪些统计或需要哪些列, 执行完后分组后的虚表就成形了</span></span>
+<span class="line"><span>5) 是否有分组后统计结果的过滤, 使用having过滤</span></span>
+<span class="line"><span>6) 再查看是否有排序的需要, 使用order by</span></span></code></pre><div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0;"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h1 id="subquery" tabindex="-1"><a class="header-anchor" href="#subquery"><span>subquery</span></a></h1><div class="language- line-numbers-mode" data-highlighter="shiki" data-ext="" data-title="" style="--shiki-light:#24292e;--shiki-dark:#abb2bf;--shiki-light-bg:#fff;--shiki-dark-bg:#282c34;"><pre class="shiki shiki-themes github-light one-dark-pro vp-code"><code><span class="line"><span>子查询 : 基于未知值的查询时, 未知值先作为子查询	</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>-- 查询面积最小的国家	</span></span>
+<span class="line"><span>select </span></span>
+<span class="line"><span>	code,</span></span>
+<span class="line"><span>	name,</span></span>
+<span class="line"><span>	continent,</span></span>
+<span class="line"><span>	surfacearea</span></span>
+<span class="line"><span>from </span></span>
+<span class="line"><span>	country  </span></span>
+<span class="line"><span>where </span></span>
+<span class="line"><span>	surfacearea = </span></span>
+<span class="line"><span>					(select </span></span>
+<span class="line"><span>						min(surfacearea)</span></span>
+<span class="line"><span>					from </span></span>
+<span class="line"><span>						country);</span></span></code></pre><div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0;"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h1 id="transaction" tabindex="-1"><a class="header-anchor" href="#transaction"><span>transaction</span></a></h1><div class="language- line-numbers-mode" data-highlighter="shiki" data-ext="" data-title="" style="--shiki-light:#24292e;--shiki-dark:#abb2bf;--shiki-light-bg:#fff;--shiki-dark-bg:#282c34;"><pre class="shiki shiki-themes github-light one-dark-pro vp-code"><code><span class="line"><span>事务 : transaction, 一组逻辑操作单元(多个dml和dql组成), 使用数据从一种状态到另一种状态(2种状态间数据是一致的)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>-- 启动事务 :</span></span>
+<span class="line"><span>set autocommit = false; -- 不允许自动提交 </span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>-- 事务组成 : 一组dml或dql</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>-- 事务结束 </span></span>
+<span class="line"><span>	DCL : commit(提交, 全部成功), rollback(回滚, 全部失败)</span></span>
+<span class="line"><span>	DDL : 提交 </span></span>
+<span class="line"><span>	会话正常结束 : 事务会提交 , 比如 : exit</span></span>
+<span class="line"><span>	会话异常结束 : 事务会回滚</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>-- 事务特性</span></span>
+<span class="line"><span>A atomic 原子性 : 事务中的所有语句是一个整体, 要么全成功,要么全失败</span></span>
+<span class="line"><span>C consistance 一致性 : 事务之前的数据和事务之后的数据是平的</span></span>
+<span class="line"><span>I isolation : 隔离性 : 事务中的时候, 其他客户端读不到事务中的数据.</span></span>
+<span class="line"><span>D duration : 持久性 : 事务一旦提交, 永久生效, 所有客户端都能读取到事务后的数据</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>-- 启动事务</span></span>
+<span class="line"><span>set @@autocommit=off;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>-- 还原设置</span></span>
+<span class="line"><span>set @@autocommit=on;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>-- 预编译, 提前让服务器把一个准备好的sql编译成可执行的执行体, 客户端只需要执行这个执行体即可.</span></span>
+<span class="line"><span>prepare 执行体名称 from &#39;sql&#39;; </span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>-- 准备执行体</span></span>
+<span class="line"><span>prepare p1 from &#39;select * from teachers&#39;;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>-- 执行执行体 </span></span>
+<span class="line"><span>execute 执行体名称;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>execute p1;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>-- 丢弃预编译</span></span>
+<span class="line"><span>drop prepare 执行体名称;</span></span></code></pre><div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0;"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h1 id="constraint" tabindex="-1"><a class="header-anchor" href="#constraint"><span>constraint</span></a></h1><div class="language- line-numbers-mode" data-highlighter="shiki" data-ext="" data-title="" style="--shiki-light:#24292e;--shiki-dark:#abb2bf;--shiki-light-bg:#fff;--shiki-dark-bg:#282c34;"><pre class="shiki shiki-themes github-light one-dark-pro vp-code"><code><span class="line"><span>-- 约束(constraint) : 表级的强制规定, 用于保证数据的一致性和完整性.</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>NOT NULL 非空约束，规定某个字段不能为空 必须是列级约束</span></span>
+<span class="line"><span>UNIQUE  唯一约束，规定某个字段在整个表中是唯一的, 可以是列级约束, 也可以是表级</span></span>
+<span class="line"><span>PRIMARY KEY  主键(非空且唯一), 可以是列级, 也可以表级</span></span>
+<span class="line"><span>FOREIGN KEY  外键 可以列级和表级</span></span>
+<span class="line"><span>CHECK  检查约束 不支持 </span></span>
+<span class="line"><span>DEFAULT  默认值 必须列级</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>-- 表级约束的最大优势 是可以多个列组合.</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>-- 外键, 一个表的列的数据要完全依赖另外一个表中的相应的数据才可以.</span></span>
+<span class="line"><span>drop table if exists classes;</span></span>
+<span class="line"><span>create table if not exists classes (</span></span>
+<span class="line"><span>	id int auto_increment,</span></span>
+<span class="line"><span>	name varchar(30) not null, </span></span>
+<span class="line"><span>	room char(4),</span></span>
+<span class="line"><span>	begindate date,</span></span>
+<span class="line"><span>	master int, -- 这个是某个老师的id号</span></span>
+<span class="line"><span>	primary key(id),</span></span>
+<span class="line"><span>	-- foreign key(本表的外键的列名) references 父表(父表中被引用的列名)</span></span>
+<span class="line"><span>	foreign key(master) references teachers(id)</span></span>
+<span class="line"><span>);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>-- 删除这个记录会出问题, 因为此记录在子表中被引用了.</span></span>
+<span class="line"><span>delete from teachers where id = 1; </span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>-- 外键的缺点是降低效率</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>-- 执意要删除父表中被引用的记录时, 当前表没有办法了.</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>-- 丢弃主键  一张表只能有一个主键.</span></span>
+<span class="line"><span>alter table 表名 </span></span>
+<span class="line"><span>drop primary key;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>-- 添加主键 </span></span>
+<span class="line"><span>alter table 表名 </span></span>
+<span class="line"><span>add primary key(主键列名列表);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>-- 丢弃外键约束, 一张表只能有一个主键. 但是可以有多个外键, 丢弃外键时必须要有名字. 可以通过查看表的建表语句. show create table 表名;</span></span>
+<span class="line"><span>alter table 表名</span></span>
+<span class="line"><span>drop foreign key 外键约束名; </span></span>
+<span class="line"><span></span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>-- 添加外键</span></span>
+<span class="line"><span>-- 当删除父表中的被引用的记录时, 有选项可以特殊处理</span></span>
+<span class="line"><span>alter table 表名;</span></span>
+<span class="line"><span>add constraint 外键约束名 foreign key(本表的外键的列名) references 父表(父表被引用的列) </span></span>
+<span class="line"><span>	on delete [do nothing(默认), cascade级联, set null(置空)]</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>alter table classes </span></span>
+<span class="line"><span>add constraint fk foreign key(master) references teachers(id) on delete cascade; </span></span>
+<span class="line"><span>-- 级联, 当删除父表中的被引用的记录时, 子表中的记录被波及到</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>-- 丢弃外键 </span></span>
+<span class="line"><span>alter table classes </span></span>
+<span class="line"><span>drop foreign key fk;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>alter table classes </span></span>
+<span class="line"><span>add constraint fk foreign key(master) references teachers(id) on delete set null; -- 置空 </span></span>
+<span class="line"><span>-- 置空, 当删除父表中的被引用的记录时, 子表中的外键列的值设置为null </span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>select * from world.city limit 20, 10; -- 20表示要跳过的记录, 10就是最终要的记录数</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>SELECT * FROM table LIMIT (PageNo - 1)*PageSize, PageSize;</span></span></code></pre><div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0;"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h1 id="join" tabindex="-1"><a class="header-anchor" href="#join"><span>join</span></a></h1><figure><img src="https://gitee.com/lukelyu/images/raw/master/image/sql-join.png#id=vnydY&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure><h3 id="inner-join" tabindex="-1"><a class="header-anchor" href="#inner-join"><span>Inner JOIN</span></a></h3><figure><img src="https://www.runoob.com/wp-content/uploads/2019/01/1548731841-2663-INNER-JOIN.png#id=prRtf&amp;originHeight=174&amp;originWidth=258&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure><p><strong>SELECT</strong> &lt;select_list&gt; <strong>FROM</strong> Table_A A <strong>INNER</strong> <strong>JOIN</strong> Table_B B <strong>ON</strong> A.Key = B.Key</p><h3 id="left-join" tabindex="-1"><a class="header-anchor" href="#left-join"><span>Left JOIN</span></a></h3><figure><img src="https://www.runoob.com/wp-content/uploads/2019/01/1548731843-2683-LEFT-JOIN.png#id=pTfRp&amp;originHeight=174&amp;originWidth=258&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure><p><strong>SELECT</strong> &lt;select_list&gt; <strong>FROM</strong> Table_A A <strong>LEFT</strong> <strong>JOIN</strong> Table_B B <strong>ON</strong> A.Key = B.Key</p><h3 id="right-join" tabindex="-1"><a class="header-anchor" href="#right-join"><span>Right JOIN</span></a></h3><figure><img src="https://www.runoob.com/wp-content/uploads/2019/01/1548731845-3187-RIGHT-JOIN.png#id=Ws0fg&amp;originHeight=174&amp;originWidth=258&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure><p><strong>SELECT</strong> &lt;select_list&gt; <strong>FROM</strong> Table_A A <strong>RIGHT</strong> <strong>JOIN</strong> Table_B B <strong>ON</strong> A.Key = B.Key</p><h3 id="outer-join" tabindex="-1"><a class="header-anchor" href="#outer-join"><span>Outer JOIN</span></a></h3><figure><img src="https://gitee.com/lukelyu/images/raw/master/image/1548731847-7074-FULL-OUTER-JOIN.png#id=IsZpj&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure><p><strong>SELECT</strong> &lt;select_list&gt; <strong>FROM</strong> Table_A A <strong>FULL</strong> <strong>OUTER</strong> <strong>JOIN</strong> Table_B B <strong>ON</strong> A.Key = B.Key</p><h3 id="left-excluding-join" tabindex="-1"><a class="header-anchor" href="#left-excluding-join"><span>Left Excluding JOIN</span></a></h3><figure><img src="https://gitee.com/lukelyu/images/raw/master/image/1548731849-9936-LEFT-EXCLUDING-JOIN.png#id=Iuw6f&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure><p><strong>SELECT</strong> &lt;select_list&gt; <strong>FROM</strong> Table_A A <strong>LEFT</strong> <strong>JOIN</strong> Table_B B <strong>ON</strong> A.Key = B.Key <strong>WHERE</strong> B.Key <strong>IS</strong> <strong>NULL</strong></p><h3 id="right-excluding-join" tabindex="-1"><a class="header-anchor" href="#right-excluding-join"><span>Right Excluding JOIN</span></a></h3><figure><img src="https://gitee.com/lukelyu/images/raw/master/image/1548731850-7833-RIGHT-EXCLUDING-JOIN.png#id=Jp8QM&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure><p><strong>SELECT</strong> &lt;select_list&gt; <strong>FROM</strong> Table_A A <strong>RIGHT</strong> <strong>JOIN</strong> Table_B B <strong>ON</strong> A.Key = B.Key <strong>WHERE</strong> A.Key <strong>IS</strong> <strong>NULL</strong></p><h3 id="outer-excluding-join" tabindex="-1"><a class="header-anchor" href="#outer-excluding-join"><span>Outer Excluding JOIN</span></a></h3><figure><img src="https://gitee.com/lukelyu/images/raw/master/image/1548731854-3464-OUTER-EXCLUDING-JOIN.png#id=f81U7&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure><p><strong>SELECT</strong> &lt;select_list&gt; <strong>FROM</strong> Table_A A <strong>FULL</strong> <strong>OUTER</strong> <strong>JOIN</strong> Table_B B <strong>ON</strong> A.Key = B.Key <strong>WHERE</strong> A.Key <strong>IS</strong> <strong>NULL</strong> <strong>OR</strong> B.Key <strong>IS</strong> <strong>NULL</strong></p></div><!----><footer class="vp-page-meta"><div class="vp-meta-item edit-link"><a class="auto-link external-link vp-meta-label" href="https://github.com/d3Lap1ace/edit/main/src/backend/Mysql.md" aria-label="在 GitHub 上编辑此页" rel="noopener noreferrer" target="_blank"><!--[--><svg xmlns="http://www.w3.org/2000/svg" class="icon edit-icon" viewBox="0 0 1024 1024" fill="currentColor" aria-label="edit icon" name="edit"><path d="M430.818 653.65a60.46 60.46 0 0 1-50.96-93.281l71.69-114.012 7.773-10.365L816.038 80.138A60.46 60.46 0 0 1 859.225 62a60.46 60.46 0 0 1 43.186 18.138l43.186 43.186a60.46 60.46 0 0 1 0 86.373L588.879 565.55l-8.637 8.637-117.466 68.234a60.46 60.46 0 0 1-31.958 11.229z"></path><path d="M728.802 962H252.891A190.883 190.883 0 0 1 62.008 771.98V296.934a190.883 190.883 0 0 1 190.883-192.61h267.754a60.46 60.46 0 0 1 0 120.92H252.891a69.962 69.962 0 0 0-69.098 69.099V771.98a69.962 69.962 0 0 0 69.098 69.098h475.911A69.962 69.962 0 0 0 797.9 771.98V503.363a60.46 60.46 0 1 1 120.922 0V771.98A190.883 190.883 0 0 1 728.802 962z"></path></svg><!--]-->在 GitHub 上编辑此页<!----></a></div><div class="vp-meta-item git-info"><div class="update-time"><span class="vp-meta-label">上次编辑于: </span><!----></div><div class="contributors"><span class="vp-meta-label">贡献者: </span><!--[--><!--[--><span class="vp-meta-info" title="email: ap1cem@163.com">d3lap1ace L.Lewis</span><!--]--><!--]--></div></div></footer><nav class="vp-page-nav"><!----><a class="route-link auto-link next" href="/impower-blogs/backend/JDBC.html" aria-label="/backend/JDBC.html"><div class="hint">下一页<span class="arrow end"></span></div><div class="link">/backend/JDBC.html<!----></div></a></nav><div id="vp-comment" class="giscus-wrapper input-top" style="display:block;"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" preserveAspectRatio="xMidYMid" viewBox="0 0 100 100"><circle cx="28" cy="75" r="11" fill="currentColor"><animate attributeName="fill-opacity" begin="0s" dur="1s" keyTimes="0;0.2;1" repeatCount="indefinite" values="0;1;1"></animate></circle><path fill="none" stroke="#88baf0" stroke-width="10" d="M28 47a28 28 0 0 1 28 28"><animate attributeName="stroke-opacity" begin="0.1s" dur="1s" keyTimes="0;0.2;1" repeatCount="indefinite" values="0;1;1"></animate></path><path fill="none" stroke="#88baf0" stroke-width="10" d="M28 25a50 50 0 0 1 50 50"><animate attributeName="stroke-opacity" begin="0.2s" dur="1s" keyTimes="0;0.2;1" repeatCount="indefinite" values="0;1;1"></animate></path></svg></div><!----><!--]--></main><!--]--><footer class="vp-footer-wrapper"><div class="vp-footer">默认页脚</div><div class="vp-copyright">Copyright © 2024 luke.lewis </div></footer></div><!--]--><!--[--><!----><!--]--><!--]--></div>
+    <script type="module" src="/impower-blogs/assets/app-BkLpWT_T.js" defer></script>
+  </body>
+</html>
