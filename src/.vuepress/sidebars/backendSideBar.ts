@@ -2,8 +2,7 @@ export default [
     "",
     {
         text: "JAVA",
-        collapsable: true,
-        structure: true,
+        collapsible: true,
         children: [
             "Java基础",
             "Java面向对象.md",
@@ -15,8 +14,7 @@ export default [
     },
     {
         text: "Spring框架",
-        collapsable: true,
-        structure: true,
+        collapsible: true,
         children:[
             "Mybatis.md",
             "Spring6.md",
@@ -25,8 +23,7 @@ export default [
     },
     {
         text: "Linux",
-        collapsable: true,
-        structure: true,
+        collapsible: true,
         children:[
             "Mysql.md",
             "JDBC.md",
@@ -35,16 +32,14 @@ export default [
     },
     {
         text: "高并发",
-        collapsable: true,
-        structure: true,
+        collapsible: true,
         children:[
             "高并发.md",
         ],
     },
     {
         text: "分布式微服务",
-        collapsable: true,
-        structure: true,
+        collapsible: true,
         children:[
             "SpringCloud.md",
             "Redis.md",
