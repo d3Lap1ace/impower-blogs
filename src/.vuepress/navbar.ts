@@ -2,14 +2,17 @@ import { navbar } from "vuepress-theme-hope";
 
 export default navbar([
   "/",
-  "/portfolio",
-  "/programming-language/",
+//   "/portfolio",
   {
     text: "后端开发",
-    link: "/backend ",
+    link: "/backend/",
+  },
+  {
+    text: "前端开发",
+    link: "/frontend/",
   },
   {
     text: "开发工具",
-    link: "/tools",
+    link: "/tools/",
   },
 ]);

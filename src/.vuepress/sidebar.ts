@@ -1,26 +1,9 @@
-import { sidebar } from "vuepress-theme-hope";
+import {SidebarConfig4Multiple} from "vuepress/config";
+import backendSideBar from "./sidebars/backendSideBar.js"
 
-export default sidebar({
-  "/": [
-    "",
-    "portfolio",
-    {
-      text: "案例",
-      icon: "laptop-code",
-      prefix: "demo/",
-      link: "demo/",
-      children: "structure",
-    },
-    {
-      text: "文档",
-      icon: "book",
-      prefix: "guide/",
-      children: "structure",
-    },
-    {
-      text: "幻灯片",
-      icon: "person-chalkboard",
-      link: "https://plugin-md-enhance.vuejs.press/zh/guide/content/revealjs/demo.html",
-    },
-  ],
-});
+export default {
+  "/backend/": backendSideBar,
+
+  "/": "auto",
+  
+} as SidebarConfig4Multiple;

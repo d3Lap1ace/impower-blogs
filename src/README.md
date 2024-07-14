@@ -4,8 +4,6 @@ icon: home
 title: 首页
 heroImage: ./chrisTinaCir.png
 heroAlt: 栗悟饭与龟波功
-# bgImage: https://theme-hope-assets.vuejs.press/bg/6-light.svg
-# bgImageDark: https://theme-hope-assets.vuejs.press/bg/6-dark.svg
 bgImageStyle:
 background-attachment: fixed
 heroText: impower
@@ -13,20 +11,39 @@ tagline: 全栈知识库
 actions:
   - text: 快速查找
     icon: lightbulb
-    link: ./demo/
+    link: /quicknav/
     type: primary
 
-  - text: 个人主页
-    link: ./portfolio/
+#   - text: 个人主页
+#     link: /portfolio/
 
   - text: 后端开发
-    link: ./backend/
+    link: /backend/
 
   - text: 前端开发
-    link: ./frontend/
+    link: /frontend/
 
   - text: 开发工具
-    link: ./tools/
+    link: /tools/
+    
+features:
+  - title: Mail
+    icon: /assets/icon/gmail.svg
+    color: bule
+    details: lewis's Mail
+    # link: 
+  - title: Github
+    icon: /assets/icon/gitee.svg
+    details: lewis's gihhub
+    link: https://github.com/d3Lap1ace
+  - title: B站
+    icon: /assets/icon/bilibili.svg
+    details: lewis's bilibili
+    link: https://space.bilibili.com/478310337
+  - title: 力扣
+    icon: /assets/icon/leetcode.svg
+    details: lewis's leetcode
+    link: https://leetcode.cn/u/d3lap1ace/
 
 
  

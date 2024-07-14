@@ -5,7 +5,7 @@ import sidebar from "./sidebar.js";
 
 export default hopeTheme({
   hostname: "https://vuepress-theme-hope-docs-demo.netlify.app",
-
+  darkmode: "toggle",
   author: {
     name: "luke.lewis",
     url: "https://github.com/d3Lap1ace",
@@ -17,7 +17,7 @@ export default hopeTheme({
 
   logo: "book-01.png",
 
-  repo: "https://github.com/d3Lap1ace/impower-blogs",
+  repo: "https://github.com/d3Lap1ace",
 
   docsDir: "src",
 
