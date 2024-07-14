@@ -1,7 +1,7 @@
 export default [
     "",
     {
-        title: "JAVA",
+        text: "JAVA",
         collapsable: true,
         structure: true,
         children: [
@@ -14,7 +14,7 @@ export default [
         
     },
     {
-        title: "Spring框架",
+        text: "Spring框架",
         collapsable: true,
         structure: true,
         children:[
@@ -24,7 +24,7 @@ export default [
         ]
     },
     {
-        title: "Linux",
+        text: "Linux",
         collapsable: true,
         structure: true,
         children:[
@@ -34,7 +34,7 @@ export default [
         ]
     },
     {
-        title: "高并发",
+        text: "高并发",
         collapsable: true,
         structure: true,
         children:[
@@ -42,7 +42,7 @@ export default [
         ],
     },
     {
-        title: "分布式微服务",
+        text: "分布式微服务",
         collapsable: true,
         structure: true,
         children:[
