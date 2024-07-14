@@ -1,6 +1,5 @@
 import { defineUserConfig } from "vuepress";
 import { searchPlugin } from "@vuepress/plugin-search";
-
 import theme from "./theme.js";
 
 
@@ -30,12 +29,12 @@ export default defineUserConfig({
     })
   ],
   
-  markdown: {
-    // 开启代码块的行号
-    lineNumbers: true,
-    // 支持 4 级以上的标题渲染
-    extractHeaders: ["h2", "h3", "h4", "h5", "h6"],
-  },
+//   markdown: {
+//     // 开启代码块的行号
+//     lineNumbers: true,
+//     // 支持 4 级以上的标题渲染
+//     extractHeaders: ["h2", "h3", "h4", "h5", "h6"],
+//   },
 
   // 和 PWA 一起启用
   // shouldPrefetch: false,
