@@ -101,7 +101,7 @@ export default hopeTheme({
         tabs: true,
         // vpre: true,
         vuePlayground: true,
-      },
+    },
 
       // 在启用之前安装 chart.js
       // chart: true,
@@ -198,5 +198,5 @@ export default hopeTheme({
     //     ],
     //   },
     // },
-  },
+  
 });
