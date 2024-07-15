@@ -1,5 +1,5 @@
 import { hopeTheme } from "vuepress-theme-hope";
-
+import { searchPlugin } from "@vuepress/plugin-search";
 import navbar from "./navbar.js";
 import sidebar from "./sidebar.js";
 
@@ -80,6 +80,8 @@ export default hopeTheme({
     //   categoryId: "DIC_kwDOG_Pt2M4COD69",
     // },
 
+    search: true,
+    
     components: {
       components: ["Badge", "VPCard"],
     },
