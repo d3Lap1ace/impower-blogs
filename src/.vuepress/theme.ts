@@ -91,8 +91,6 @@ export default hopeTheme({
         showInMobile: true,
         // 代码复制成功提示消息的时间-ms
         duration: 3000,
-        // 纯净模式
-        
     },
 
     // 此处开启了很多功能用于演示，你应仅保留用到的功能。
@@ -104,6 +102,9 @@ export default hopeTheme({
       hint: true,
       component: true,
       demo: true,
+      echarts: true,
+      gfm:true,
+      katex: true,
       figure: true,       // 启用 figure
       imgLazyload: true,  // 启用图片懒加载
       imgSize: true,      // 启用图片大小
@@ -112,7 +113,9 @@ export default hopeTheme({
       mark: true,
       plantuml: true,
       spoiler: true,
-      
+      playground: {
+        presets: ["ts", "vue"],
+      },
       stylize: [
         {
           matcher: "Recommended",

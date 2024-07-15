@@ -17,8 +17,12 @@
     "@vuepress/plugin-docsearch": "^2.0.0-rc.37",
     "@vuepress/plugin-search": "^2.0.0-rc.37",
     "chart.js": "^4.4.3",
+    "echarts": "^5.5.1",
     "vue": "^3.4.27",
     "vuepress": "2.0.0-rc.14",
     "vuepress-theme-hope": "2.0.0-rc.50"
+  },
+  "dependencies": {
+    "katex": "^0.16.11"
   }
 }
