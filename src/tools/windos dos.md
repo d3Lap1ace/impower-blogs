@@ -1,3 +1,4 @@
+# win
 netstat -ano | findstr 80
 tasklist | findstr pid
 
