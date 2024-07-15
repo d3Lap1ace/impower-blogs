@@ -19,7 +19,7 @@ export default hopeTheme({
   logo: "book-01.png",
 
   logoDark: "book-01-b.png",
-  
+
   repo: "https://github.com/d3Lap1ace",
 
   docsDir: "src",
@@ -74,13 +74,15 @@ export default hopeTheme({
       codetabs: true,
       component: true,
       demo: true,
-      figure: true,
-      imgLazyload: true,
-      imgSize: true,
+      figure: true,       // 启用 figure
+      imgLazyload: true,  // 启用图片懒加载
+      imgSize: true,      // 启用图片大小
+      imgMark: true,      // 启用图片标记
       include: true,
       mark: true,
       plantuml: true,
       spoiler: true,
+      
       stylize: [
         {
           matcher: "Recommended",
