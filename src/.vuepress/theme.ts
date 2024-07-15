@@ -18,6 +18,8 @@ export default hopeTheme({
 
   logo: "book-01.png",
 
+  logoDark: "book-01-b.png",
+  
   repo: "https://github.com/d3Lap1ace",
 
   docsDir: "src",
