@@ -9,7 +9,7 @@ background-attachment: fixed
 heroText: impower
 tagline: 全栈知识库
 actions:
-  - text: 快速查找
+  - text: 开始阅读
     icon: lightbulb
     link: /quicknav/
     type: primary

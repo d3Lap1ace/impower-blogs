@@ -13,21 +13,21 @@ export default defineUserConfig({
   theme,
 
   //插件配置
-//   plugins: [
-//     searchPlugin({
-//         locales: {
-//             '/':{
-//                 placeholder: "搜索本站",
-//             }
-//         },
-//         // 热键支持
-//         hotKeys: ["command", "k"],
-//         // 最大推荐个数
-//         maxSuggestions: 7,
-//         // 排除首页
-//         isSearchable: (page) => page.path !== '/',
-//     }),
-//   ],
+  plugins: [
+    searchPlugin({
+        locales: {
+            '/':{
+                placeholder: "搜索本站",
+            }
+        },
+        // 热键支持
+        hotKeys: ["command", "k"],
+        // 最大推荐个数
+        maxSuggestions: 7,
+        // 排除首页
+        isSearchable: (page) => page.path !== '/',
+    }),
+  ],
   shouldPrefetch: false,
 });
 
