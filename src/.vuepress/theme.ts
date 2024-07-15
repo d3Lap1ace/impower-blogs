@@ -33,7 +33,24 @@ export default hopeTheme({
   footer: "默认页脚",
   displayFooter: true,
 
-  
+  // 路径导航
+  breadcrumb: true,
+
+  // 路径导航的图标显示
+  breadcrumbIcon: true,
+
+  // 全屏按钮
+  fullscreen: true,
+
+  // 文章的最后更新时间
+  lastUpdated: true,
+
+  // 显示页面的贡献者
+  contributors: false,
+
+  // 纯净模式-禁用
+  pure: false,
+
 
   
 
@@ -55,23 +72,34 @@ export default hopeTheme({
   // 在这里配置主题提供的插件
   plugins: {
     // 注意: 仅用于测试! 你必须自行生成并在生产环境中使用自己的评论服务
-    comment: {
-      provider: "Giscus",
-      repo: "vuepress-theme-hope/giscus-discussions",
-      repoId: "R_kgDOG_Pt2A",
-      category: "Announcements",
-      categoryId: "DIC_kwDOG_Pt2M4COD69",
-    },
+    // comment: {
+    //   provider: "Giscus",
+    //   repo: "vuepress-theme-hope/giscus-discussions",
+    //   repoId: "R_kgDOG_Pt2A",
+    //   category: "Announcements",
+    //   categoryId: "DIC_kwDOG_Pt2M4COD69",
+    // },
 
     components: {
       components: ["Badge", "VPCard"],
+    },
+    // 代码复制功能-vuepress-plugin-copy-code2
+    copyCode: {
+        // 在移动端也可以实现复制代码
+        showInMobile: true,
+        // 代码复制成功提示消息的时间-ms
+        duration: 3000,
+        // 纯净模式
+        
     },
 
     // 此处开启了很多功能用于演示，你应仅保留用到的功能。
     mdEnhance: {
       align: true,
       attrs: true,
+      chart: true,
       codetabs: true,
+      hint: true,
       component: true,
       demo: true,
       figure: true,       // 启用 figure
