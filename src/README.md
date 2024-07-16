@@ -6,10 +6,10 @@ heroImage: ./chrisTinaCir.png
 heroAlt: 栗悟饭与龟波功
 bgImageStyle:
 background-attachment: fixed
-heroText: impower
-tagline: 全栈知识库
+heroText: 全栈知识库
+tagline: impower
 actions:
-  - text: 开始阅读
+  - text: 项目说明
     icon: lightbulb
     link: /quicknav/
     type: primary

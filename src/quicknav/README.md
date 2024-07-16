@@ -1,9 +1,22 @@
-# 快速开始
+# 项目说明
 
-[后端开发](../backend/README.md)
+建站三件事 建站三件事 建站三件事
 
-[前端开发](../frontend/README.md)
+1. 快速复习知识点 
 
-[开发工具](../tools/README.md)
+2. 梳理知识体系 
+
+3. 突击面试
+
+
+
+
+
+
+欢迎各位指正  [项目地址](https://github.com/d3Lap1ace/impower-blogs)  
+
+
+
+
 
 [关于作者](./作者.md)

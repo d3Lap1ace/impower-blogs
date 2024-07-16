@@ -102,9 +102,7 @@ export default hopeTheme({
       hint: true,
       component: true,
       demo: true,
-      echarts: true,
       gfm:true,
-      katex: true,
       figure: true,       // 启用 figure
       imgLazyload: true,  // 启用图片懒加载
       imgSize: true,      // 启用图片大小
