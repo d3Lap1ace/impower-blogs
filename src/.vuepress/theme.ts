@@ -24,12 +24,12 @@ export default hopeTheme({
 
   docsDir: "src",
 
-  // 导航栏
+
   navbar,
 
-  // 侧边栏
+
   sidebar,
-  // 页脚
+ 
   footer: "默认页脚",
   displayFooter: true,
 
@@ -39,8 +39,6 @@ export default hopeTheme({
   // 路径导航的图标显示
   breadcrumbIcon: true,
 
-  // 全屏按钮
-  fullscreen: true,
 
   // 文章的最后更新时间
   lastUpdated: true,
@@ -62,9 +60,9 @@ export default hopeTheme({
   },
 
   // 多语言配置
-  metaLocales: {
-    editLink: "在 GitHub 上编辑此页",
-  },
+//   metaLocales: {
+//     editLink: "在 GitHub 上编辑此页",
+//   },
 
   // 如果想要实时查看任何改变，启用它。注: 这对更新性能有很大负面影响
   // hotReload: true,

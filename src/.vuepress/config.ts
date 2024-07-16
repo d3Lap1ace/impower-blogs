@@ -8,7 +8,7 @@ export default defineUserConfig({
 
   lang: "zh-CN",
   title: "impower",
-  description: "vuepress-theme-hope 的文档演示",
+  description: "全栈知识库",
 
   theme,
 
