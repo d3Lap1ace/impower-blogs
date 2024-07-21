@@ -1,10 +1,8 @@
-# JAVA
-
+# Java基础
 **区分大小写：** Java 是大小写敏感的，因此变量名中的大小写字母被视为不同的符号。
 **不以数字开头：** 变量名不能以数字开头，但可以包含数字。
 **标识符的组成** :  数字 [0-9]   英文字母大小写    _ [下划线]     $ [符号]    中文
 **参考阿里巴巴程序员写代码的程序规范**
-
 # **基本类型**
 ## 基本数据类型
 ```java
@@ -276,160 +274,9 @@ int main()
 // incr after: 11
 // invoke after: 11
 ```
-# 多线程
 
-隐式锁
 
-## 概念
 
-1. 程序（Program）
-
-程序是一组指令的集合，这些指令按照特定的顺序执行，以完成特定的任务。程序是静态的，它只是一组静态的指令和数据，没有运行的状态。程序可以被存储在硬盘上，也可以被加载到内存中以便执行。程序的主要组成部分包括代码（指令）、数据（变量、常量等）和元数据（如程序的名称、版本信息等）。
-
-2. 进程（Process）
-
-进程是程序的执行实例。当程序被加载到内存中并开始执行时，它就成为了一个进程。每个进程都有自己的独立内存空间，包括代码、数据和堆栈。进程之间是相互独立的，每个进程都有自己的进程标识符（PID），用于操作系统识别和管理。进程可以创建子进程，也可以等待子进程完成。进程之间可以通过进程间通信（IPC）机制进行通信。
-
-3. 线程（Thread）
-
-线程是进程中的一个执行单元。一个进程可以包含一个或多个线程，这些线程共享进程的资源，如内存空间、文件描述符等。线程之间可以共享数据，但每个线程都有自己的寄存器集和程序计数器，用于跟踪线程的执行状态。线程可以并发执行，这意味着在同一时间内，一个进程中的多个线程可以同时执行不同的任务。线程之间的通信通常通过共享内存或者线程间通信（Thread Communication）机制进行。
-
-总结
-
--  **程序**是一组指令和数据的集合，静态存在，没有运行状态。 
--  **进程**是程序的执行实例，具有独立的内存空间和进程标识符，可以创建和管理子进程。 
--  **线程**是进程中的执行单元，共享进程的资源，可以并发执行。 
--  **并行**（parallel）：指两个或多个事件在**同一时刻**发生（同时发生）。指在同一时刻，有多条指令在多个处理器上同时执行。 
--  **并发**（concurrency）：指两个或多个事件在**同一个时间段内**发生。指在同一个时刻只能有一条指令执行，但多个进程的指令被快速轮换执行，使得在宏观上具有多个进程同时执行的效果。 
--  **分时调度**
-所有线程轮流使用 CPU 的使用权，平均分配每个线程占用 CPU 的时间。 
--  **抢占式调度**
-优先让优先级高的线程使用 CPU，如果线程的优先级相同，那么会随机选择一个(线程随机性)，Java使用的为抢占式调度。 
-   -  抢占式调度详解
-大部分操作系统都支持多进程并发运行，现在的操作系统几乎都支持同时运行多个程序。比如：现在我们上课一边使用编辑器，一边使用录屏软件，同时还开着画图板，dos窗口等软件。此时，这些程序是在同时运行，”感觉这些软件好像在同一时刻运行着“。
-实际上，CPU(中央处理器)使用抢占式调度模式在多个线程间进行着高速的切换。对于CPU的一个核而言，某个时刻，只能执行一个线程，而 CPU的在多个线程间切换速度相对我们的感觉要快，看上去就是在同一时刻运行。
-其实，多线程程序并不能提高程序的运行速度，但能够提高程序运行效率，让CPU的使用率更高。 
-
-## Thread & Runnable()
-
-要创建一个继承自`Thread`类的线程并遍历100以内的自然数，你可以按照以下步骤进行：
-
-1. 创建一个新的类，该类继承自`Thread`类。
-2. 重写`run`方法，在这个方法中实现遍历100以内的自然数的逻辑。
-3. 在主方法中创建该类的实例，并调用`start`方法启动线程。
-
-以下是一个示例代码：
-
-```java
-class NumberPrinter extends Thread {
-    @Override
-    public void run() {
-        for (int i = 1; i <= 100; i++) {
-            System.out.println(Thread.currentThread().getName() + ": " + i);
-        }
-    }
-}
-
-public class Main {
-    public static void main(String[] args) {
-        NumberPrinter thread = new NumberPrinter();
-        thread.start();
-    }
-}
-```
-
-要使用`Runnable`接口创建一个线程并遍历100以内的自然数，你需要遵循以下步骤：
-
-1. 创建一个实现`Runnable`接口的类。
-2. 在这个类中实现`run`方法，该方法中包含遍历100以内的自然数的逻辑。
-3. 在主方法中创建`Thread`实例，将实现了`Runnable`接口的类的实例作为参数传递给`Thread`构造函数，然后调用`start`方法启动线程。
-
-以下是一个示例代码：
-
-```java
-class NumberPrinter implements Runnable {
-    @Override
-    public void run() {
-        for (int i = 1; i <= 100; i++) {
-            System.out.println(Thread.currentThread().getName() + ": " + i);
-        }
-    }
-}
-
-public class Main {
-    public static void main(String[] args) {
-        NumberPrinter numberPrinter = new NumberPrinter();
-        Thread thread = new Thread(numberPrinter);
-        thread.start();
-    }
-}
-```
-
-- 
-
-- 继承`Thread`类的方式直接但受到Java单继承的限制，不能同时继承其他类。
-- 实现`Runnable`接口的方式更灵活，允许一个类同时实现多个接口，并且更适合面向对象的设计，提高了代码的可重用性和资源共享。
-
-## ★sleep()和wait()的区别
-
-`sleep()`和`wait()`是Java中用于暂停线程执行的两种方法，它们之间有一些关键的区别：
-
--  **类和方法类型**：`wait()`是`Object`类的非静态方法，而`sleep()`是`Thread`类的静态方法 
--  **释放锁**：`wait()`在等待时会释放对象的锁，这使得其他线程可以获取该对象的锁并执行。而`sleep()`在等待时不会释放任何锁，线程会保持对已获取的锁的所有权 
--  **使用场景**：`wait()`主要用于线程间的通信，当一个线程需要等待另一个线程完成某个操作时，可以调用`wait()`。`sleep()`则用于在执行过程中引入一个暂停，通常用于模拟某种延迟或者让线程暂时不执行 
--  **调用位置**：`wait()`必须在配合synchronized中调用，否则会抛出`IllegalMonitorStateException`。而`sleep()`可以在任何地方调用，不需要同步上下文。 
--  **唤醒线程**：从`wait()`状态唤醒线程需要调用`notify()`或`notifyAll()`。而`sleep()`状态下的线程在指定的时间间隔后会自动唤醒 
--  **方法重载**：`wait()`有三个重载方法，分别是`wait()`, `wait(long timeout)`, `wait(long timeout, int nanos)`。而`sleep()`有两个重载方法，分别是`sleep(long millis)`和`sleep(long millis, int nanos) 
-
-总结来说，`wait()`和`sleep()`都是用于暂停线程执行的方法，但它们在释放锁、使用场景、调用位置和唤醒线程的方式上有所不同。`wait()`更适合用于线程间的通信和同步，而`sleep()`则更适合用于模拟延迟或暂停执行。
-
-## ThreadLocal
-
-ThreadLocal的类声明： public class ThreadLocal 可以看出ThreadLocal并没有继承自Thread，也没有实现Runnable接口。
-
-2、ThreadLocal重要作用并不在于多线程间的数据共享，而是数据的独立，
-
-3、ThreadLocal中定义了一个哈希表用于为每个线程都提供一个变量的副本
-
-## 在Java中创建多线程的方式主要有四种：
-
-1. **继承**`**Thread**`**类**：创建一个新类继承`Thread`类，并重写`run()`方法。然后创建该类的实例，调用`start()`方法启动线程。
-
-```java
-class MyThread extends Thread {
-    public void run() {
-        // 线程执行的代码
-    }
-}
-```
-
-1. **实现**`**Runnable**`**接口**：创建一个实现`Runnable`接口的类，并实现`run()`方法。然后创建`Thread`实例，将`Runnable`对象作为参数传递给`Thread`构造函数，调用`start()`方法启动线程。
-
-```java
-class MyRunnable implements Runnable {
-    public void run() {
-        // 线程执行的代码
-    }
-}
-```
-
-1. **使用**`**ExecutorService**`**和**`**Future**`：通过`ExecutorService`创建线程池，然后提交`Runnable`或`Callable`任务到线程池。`ExecutorService`管理线程的生命周期，并且可以控制线程的并发数。
-
-```java
-ExecutorService executor = Executors.newFixedThreadPool(10);
-executor.execute(new MyRunnable());
-executor.shutdown();
-```
-
-1. **使用**`**ForkJoinPool**`：`ForkJoinPool`是一种特殊的线程池，用于执行`ForkJoinTask`任务。它适用于可以分解成更小任务的并行计算。
-
-```java
-ForkJoinPool forkJoinPool = new ForkJoinPool();
-ForkJoinTask<Integer> task = new MyForkJoinTask();
-forkJoinPool.execute(task);
-```
-
-这四种方式各有优势，适用于不同的场景。继承`Thread`类和实现`Runnable`接口是最基本的方式，适用于简单的并发任务。使用`ExecutorService`和`Future`提供了更高级的线程管理和任务控制功能，适用于复杂的并发应用。`ForkJoinPool`则专为并行计算设计，适用于可以分解成更小任务的大规模并行计算。
 
 # Lambda
 ## Lambda
@@ -669,7 +516,7 @@ Optional map(Function<? super T,? extends U> mapper)
 
 5. 过滤 Optional 对象中的值：
 
-Optional<'T'> filter(Predicate<? super T> predicate)
+Optional<\T> filter(Predicate<? super T> predicate)
 判断Optional容器中的值是否符合条件进行过滤
 
 6.  Optional 对象为空时执行操作
@@ -929,7 +776,7 @@ Object result = method.invoke(obj, 方法的实参值列表);
 
 # 自定义注解
 
-### 声明自定义注解
+## 声明自定义注解
 ```java
 【元注解】
 【修饰符】 @interface 注解名{
@@ -951,7 +798,7 @@ public class Apple {
     @FruitProvider(id = 1,name = "xx",address="xxx")
     private String appleProvider;
 ```
-### 自定义注解类编写的规则
+## 自定义注解类编写的规则
 
 - 自定义注解可以通过四个元注解
    - @Retention,
@@ -1014,7 +861,7 @@ public class Apple {
 
 
 ## 异常的分类
-<!-- ![image-20240408190226838.png](https://cdn.nlark.com/yuque/0/2024/png/43928099/1720400265068-35b77d1e-f4d7-4119-9131-58a851a9731d.png#averageHue=%23f8f8f8&clientId=u6eda062f-db86-4&from=drop&id=ub5ce285b&originHeight=482&originWidth=719&originalType=binary&ratio=1&rotation=0&showTitle=false&size=71275&status=done&style=none&taskId=u9530eb9d-115c-45eb-b062-a9ed02816a4&title=) -->
+![image-20240408190226838.png](./assets/image-20240408190226838.png)
 ### ★Exception & Error
 在Java中，异常的继承体系是基于`Throwable`类的。所有的异常和错误都是`Throwable`类的子类。
 
@@ -1685,7 +1532,8 @@ public class NutritionFacts {
     }
 }
 ```
-## 3.使用 clone() 方法来拷贝一个对象即复杂又有风险，它会抛出异常，并且还需要类型转换。最好不要去使用 clone()，可以使用拷贝构造函数或者拷贝工厂来拷贝一个对象。
+### 3.使用 clone() 方法来拷贝一个对象即复杂又有风险，它会抛出异常，并且还需要类型转换。最好不要去使用 clone()，可以使用拷贝构造函数或者拷贝工厂来拷贝一个对象。
+
 ```java
 public class CloneConstructorExample {
 
