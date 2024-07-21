@@ -29,7 +29,8 @@ NPM全称Node Package Manager，是Node.js包管理工具，是全球最大的�
 - **响应性**：Vue 会自动跟踪 JavaScript 状态并在其发生变化时响应式地更新 DOM  ；
 ## Vue3通过Vite实现工程化
 ### Vite的介绍
-![image.png](./assets/1718101530104.png)
+
+![image2323.png](./assets/1718101530104.png)
 
 > 在浏览器支持 ES 模块之前，JavaScript 并没有提供原生机制让开发者以模块化的方式进行开发。这也正是我们对 “打包” 这个概念熟悉的原因：使用工具抓取、处理并将我们的源码模块串联成可以在浏览器中运行的文件。时过境迁，我们见证了诸如 [webpack](https://webpack.js.org/)、[Rollup](https://rollupjs.org/) 和 [Parcel](https://parceljs.org/) 等工具的变迁，它们极大地改善了前端开发者的开发体验。
 
@@ -86,7 +87,7 @@ ctrl+c
 - main.js是vue工程中非常重要的文件，他决定这项目使用哪些依赖，导入的第一个组件；
 - App.vue是vue中的核心组件，所有的其他组件都要通过该组件进行导入，该组件通过路由可以控制页面的切换；
 
-![](images/1684912274904.png#id=Jf8Ca&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
+
 
 ### Vite+Vue3响应式入门和setup函数
 ```html
@@ -198,7 +199,6 @@ import './style/reset.css'
 ```javascript
 @import './style/reset.css'
 ```
-### 
 ## vue3 视图渲染技术
 ### 模板语法
 #### 插值表达式
@@ -288,7 +288,6 @@ ref 可以将一个基本类型的数据（如字符串，数字等）转换为�
 </style>
 ```
 
-![](images/1684565503347.png#id=MITEW&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
 
 > `**v-if**`    **vs** `**v-show**`：
 
@@ -641,7 +640,7 @@ ref 可以将一个基本类型的数据（如字符串，数字等）转换为�
 - 周期图解：
 
 ![image.png](./assets/1718519366310.png)
-![](images/image_elceCM4Wbp.png#id=qgfJD&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
+
 
 - 常见钩子函数： 
    - onMounted()              注册一个回调函数，在组件挂载完成后执行；
