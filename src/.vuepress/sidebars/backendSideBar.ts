@@ -6,11 +6,17 @@ export default [
         children: [
             "01.Java基础.md",
             "02.Java_oop.md",
-            "03.Java集合.md",
-            "04.Java集合源码分析.md",
+            {
+                text: "Collection",
+                collapsible: true,
+                children:[
+                    "03.Java集合.md",
+                    "04.Java集合源码分析.md",
+                ],
+            },
             "05.Jvm.md",
             {
-                text: "Juc并发",
+                text: "Juc",
                 collapsible: true,
                 children:[
                     "06.Juc基础概念.md",
@@ -18,6 +24,7 @@ export default [
                     "06.Juc高级",
                 ],
             },
+            
         ],
         
     },
@@ -31,27 +38,22 @@ export default [
         ]
     },
     {
-        text: "Linux",
+        text: "数据库",
         collapsible: true,
         children:[
-            "Mysql.md",
-            "JDBC.md",
             "Linux.md",
+            "JDBC.md",
+            "Mysql.md",
+            "Redis.md",
         ]
     },
-    {
-        text: "高并发",
-        collapsible: true,
-        children:[
-            "高并发.md",
-        ],
-    },
+    
     {
         text: "分布式微服务",
         collapsible: true,
         children:[
             "SpringCloud.md",
-            "Redis.md",
+            
         ],
     },
 ];
