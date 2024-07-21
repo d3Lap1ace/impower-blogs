@@ -4,12 +4,20 @@ export default [
         text: "JAVA",
         collapsible: true,
         children: [
-            "Java",
-            "Java面向对象.md",
-            "集合.md",
-            "源码分析.md",
-            "Jvm.md",
-            "Juc.md"
+            "01.Java基础.md",
+            "02.Java_oop.md",
+            "03.Java集合.md",
+            "04.Java集合源码分析.md",
+            "05.Jvm.md",
+            {
+                text: "Juc并发",
+                collapsible: true,
+                children:[
+                    "06.Juc基础概念.md",
+                    "06.Juc锁.md",
+                    "06.Juc高级",
+                ],
+            },
         ],
         
     },
