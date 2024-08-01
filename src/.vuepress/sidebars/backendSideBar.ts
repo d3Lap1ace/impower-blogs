@@ -16,12 +16,12 @@ export default [
             },
             "05.Jvm.md",
             {
-                text: "Juc",
+                text: "Juc并发编程",
                 collapsible: true,
                 children:[
-                    "06.Juc基础概念.md",
+                    "06.Juc并发概念.md",
                     "06.Juc锁.md",
-                    "06.Juc高级",
+                    "06.Juc线程池.md",
                 ],
             },
             
