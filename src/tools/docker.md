@@ -1,6 +1,8 @@
-# docker
+# Docker
+
 Docker的安装和卸载可以参考官方文档：[https://docs.docker.com/engine/install/centos/](https://docs.docker.com/engine/install/centos/)
 卸载
+
 ```bash
 sudo yum remove docker \
                   docker-client \
@@ -24,7 +26,7 @@ sudo yum-config-manager \
 # 安装docker    
 sudo yum install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 ```
-# 阿里云镜像加速器
+## 阿里云镜像加速器
 ```bash
 # 在etc目录下创建一个docker文件夹
 sudo mkdir -p /etc/docker
@@ -59,7 +61,7 @@ vim /etc/docker/daemon.json
 sudo systemctl daemon-reload 
 sudo systemctl restart docker
 ```
-# docker镜像操作
+## docker镜像操作
 ```bash
 # 搜索
 docker serach 镜像名字
@@ -76,8 +78,11 @@ docker images name
                 docker images --format "{{.Repository}}:{{.Tag}}" # 搜索结果中只包含仓库名称和标签名称
 # 删除
 docker rmi 镜像名称[:镜像标签]/镜像的id
+
+# 加载上传的tar包
+docker load -i  fileName.tar
 ```
-# docker容器操作
+## docker容器操作
 ```bash
 # 查询容器
 docker ps # 查看本地正在运行的容器
@@ -107,16 +112,17 @@ docker logs -f 容器名称/容器的id		# 查询容器内进程日志，-f参�
 docker inspect 容器名称/容器的id						# 查看容器的详情信息
 docker cp 	 										 # 完成容器和宿主机之间的文件copy
 
-         
+# 已有容器 设置开机自启
+docker update --restart=always 容器ID(或者容器名)
 ```
 -p   
 docker容器内部所运行的进程是无法被外部机器(windows)直接访问的, 如果外部机器向访问容器内的进程，那么在创建容器的时候就需要在linux宿主机上开一个端口号，并且需要建立这个端口号和容器内进程端口号之间的映射关系.
-![image.png](https://cdn.nlark.com/yuque/0/2024/png/43928099/1719214909168-4827db94-8544-409c-bc1a-26a8d66243a5.png#averageHue=%23fef1cb&clientId=uf03b55f5-681f-4&from=paste&height=587&id=ue0dc0696&originHeight=587&originWidth=1167&originalType=binary&ratio=1&rotation=0&showTitle=false&size=38701&status=done&style=none&taskId=ue303a8cb-4a19-44df-8caa-4056e62b725&title=&width=1167)
+![image.png](./assets/1719214909168.png)
 exp:      docker run -d --name redis01 -p 6379:6379 redis:7.0.10
 
-# docker数据卷操作
+## docker数据卷操作
 数据卷是docker所提供的一个虚拟目录，这个虚拟目录会对应宿主机的一个真实目录。在创建容器的时候就可以将这个数据卷挂载到容器中的某一个目录下，那么此时在该目录下所产生的数据就会存储到宿主机的目录下，实现了容器和宿主机之间的文件共享。
-![image.png](https://cdn.nlark.com/yuque/0/2024/png/43928099/1719216270722-0e65a083-8543-435f-8f31-580ed927c330.png#averageHue=%23d4e7d3&clientId=uf03b55f5-681f-4&from=paste&height=422&id=ue2a6e37e&originHeight=422&originWidth=1172&originalType=binary&ratio=1&rotation=0&showTitle=false&size=31481&status=done&style=none&taskId=u721fa6e2-d094-41dd-a3e4-5608365ea03&title=&width=1172)
+![image.png](./assets/1719216270722.png)
 数据卷作用：
 1.可以将容器中的数据持久化到宿主机目录中,以后删除容器，容器中指定目录中的数据就可以保存下来了。
 2.可以让多个容器共享数据卷目录的同一份数据(项目)。
@@ -136,7 +142,7 @@ docker volume prune 		# 删除未使用的数据卷
 docker run -d --name redis03 -p 6381:6379 -v /redis-data:/data redis:7.0.10
 
 ```
-# Docker图形化界面
+## Docker图形化界面
 ```bash
 # 搜索portainer
 docker search portainer

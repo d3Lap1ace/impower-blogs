@@ -1,5 +1,4 @@
 export default [
-    "",
     {
         text:"开发工具",
         collapsible: true,
@@ -9,12 +8,8 @@ export default [
             "docker",
         ],
     },
-    {
-         text:"开发环境",
-         collapsible: true,
-         children:[
-            "开发环境",
-            "windos dos",
-         ],
-    },
+    // "开发环境.md",
+    "Linux.md",
+    
+    
 ];

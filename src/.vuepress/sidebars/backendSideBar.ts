@@ -7,11 +7,12 @@ export default [
             "01.Java基础.md",
             "02.Java_oop.md",
             {
-                text: "Collection",
+                text: "Java集合",
                 collapsible: true,
                 children:[
-                    "03.Java集合.md",
-                    "04.Java集合源码分析.md",
+                    "03.Java Collection.md",
+                    "03.Java Map.md",
+                    "03.Java集合源码分析.md",
                 ],
             },
             "05.Jvm.md",
@@ -42,7 +43,6 @@ export default [
         collapsible: true,
         children:[
             "Linux.md",
-            "JDBC.md",
             "Mysql.md",
             "Redis.md",
         ]
