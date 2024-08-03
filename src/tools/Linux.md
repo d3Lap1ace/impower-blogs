@@ -47,7 +47,7 @@ ping url
 ```
 
 可能的故障问题
-
+大概率是和centos的networkManager服务冲突
 ```bash
 systemctl status NetworkManager.service 查看服务
 systemctl stop NetworkManager           停止服务
