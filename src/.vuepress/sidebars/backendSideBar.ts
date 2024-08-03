@@ -42,8 +42,8 @@ export default [
         text: "数据库",
         collapsible: true,
         children:[
-            "Mysql.md",
-            "Redis.md",
+            "07.Mysql.md",
+            "08.Redis.md",
         ]
     },
     
