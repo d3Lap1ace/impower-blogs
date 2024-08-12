@@ -7,7 +7,7 @@ export default [
             "01.Java基础.md",
             "02.Java_oop.md",
             {
-                text: "Java集合",
+                text: "Java 集合",
                 collapsible: true,
                 children:[
                     "03.Java Collection.md",
@@ -17,20 +17,20 @@ export default [
             },
             "05.Jvm.md",
             {
-                text: "Juc并发编程",
+                text: "Juc 并发编程",
                 collapsible: true,
                 children:[
                     "06.Juc并发概念.md",
-                    "06.Juc锁.md",
+                    "06.Juc线程锁及机制.md",
                     "06.Juc线程池.md",
                 ],
             },
-            
         ],
         
     },
+
     {
-        text: "Spring框架",
+        text: "Spring 框架",
         collapsible: true,
         children:[
             "Mybatis.md",
