@@ -10,7 +10,7 @@ export default hopeTheme({
   author: {
     name: "luke.lewis",
     url: "https://github.com/d3Lap1ace",
-    email: "aegonk@163.com",
+    email: "ap1cem@163.com",
   },
   
 

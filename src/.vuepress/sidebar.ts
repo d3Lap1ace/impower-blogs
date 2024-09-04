@@ -1,10 +1,9 @@
 import {SidebarConfig4Multiple} from "vuepress/config";
-import backendSideBar from "./sidebars/backendSideBar.js";
-import frontendSideBar from "./sidebars/frontendSideBar.js";
-import toolsSideBar from "./sidebars/toolsSideBar.js";
+import JavaSideBar from "./sidebars/JavaSideBar.js";
+import DbSideBar from "./sidebars/DbSideBar.js";
 
 export default{
-    "/backend/": backendSideBar,
-    "/frontend/": frontendSideBar,
-    "/tools": toolsSideBar,
+    "/Java/": JavaSideBar,
+    "/DataBase/": DbSideBar,
+
 } as SidebarConfig4Multiple;
