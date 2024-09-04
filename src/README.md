@@ -17,14 +17,14 @@ actions:
 #   - text: 个人主页
 #     link: /portfolio/
 
-  - text: 后端开发
-    link: /backend/
+  - text: JAVA
+    link: /Java/
 
-  - text: 前端开发
-    link: /frontend/
+  - text: 数据库
+    link: /DataBase/
 
-  - text: 开发工具
-    link: /tools/
+  - text: 中间件
+    link: /Middleware/
     
 features:
   - title: Mail
